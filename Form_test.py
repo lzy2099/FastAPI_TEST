@@ -6,9 +6,11 @@ from starlette.templating import Jinja2Templates
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
+
 @app.get("/")
 async def main(request: Request):
     return templates.TemplateResponse('post.html', {'request':request})
+
 
 @app.post("/user/")
 async def get_userpass(request: Request, username: str=Form(...), password: str=Form(...)):
