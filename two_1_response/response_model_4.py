@@ -19,12 +19,13 @@ items = {
 }
 
 
-# response_model_include 返回列出的值，没有列出的不返回。
+# response_model_include 只返回列出的值，没有列出的不返回。
 @app.get("/items/{item_id}/name", response_model=Item, response_model_include=["name", "description", "tax"])
 async def read_item(item_id: str):
     return items[item_id]
 
 
+# response_model_exclude 返回结果中不包含
 @app.get("/items/{item_id}/public", response_model=Item, response_model_exclude={"tax"})
 async def read_item_public_data(item_id: str):
     return items[item_id]
